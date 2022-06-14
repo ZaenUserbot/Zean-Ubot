@@ -64,7 +64,7 @@ async def kang(args):
 
     if not message:
         return await eod(args, get_string("stkr_1")
-        )
+                         )
 
     if isinstance(message.media, MessageMediaPhoto):
         xx = await eor(args, f"`{choice(KANGING_STR)}`")
@@ -72,7 +72,7 @@ async def kang(args):
         photo = await args.client.download_media(message.photo, photo)
     elif isinstance(message.media, MessageMediaUnsupported):
         await eod(args, get_string("stkr_2")
-        )
+                  )
     elif message.message:
         xx = await eor(args, f"`{choice(KANGING_STR)}`")
         photo = await create_quotly(message)
@@ -111,7 +111,7 @@ async def kang(args):
         photo = 1
     else:
         return await eod(args, get_string("stkr_2")
-        )
+                         )
     if photo:
         splat = args.text.split()
         if not emojibypass:
@@ -179,7 +179,7 @@ async def kang(args):
                         packname = f"Sticker_u{user.id}_Ke{pack}"
                         packnick = f"Sticker Pack {f_name}"
                     await xx.edit(get_string("stkr_3").format(str(pack))
-                    )
+                                  )
                     await conv.send_message(packname)
                     x = await conv.get_response()
                     if x.text == "Gagal Memilih Pack.":
@@ -216,8 +216,8 @@ async def kang(args):
                         await conv.get_response()
                         await args.client.send_read_acknowledge(conv.chat_id)
                         return await xx.edit(get_string("stkr_4").format(packname),
-                            parse_mode="md",
-                        )
+                                             parse_mode="md",
+                                             )
                 if is_anim:
                     await conv.send_file("AnimatedSticker.tgs")
                     remove("AnimatedSticker.tgs")
@@ -230,7 +230,7 @@ async def kang(args):
                 rsp = await conv.get_response()
                 if "Sorry, the file type is invalid." in rsp.text:
                     return await xx.edit(get_string("stkr_5")
-                    )
+                                         )
                 await conv.send_message(emoji)
                 await args.client.send_read_acknowledge(conv.chat_id)
                 await conv.get_response()
@@ -262,7 +262,7 @@ async def kang(args):
                 rsp = await conv.get_response()
                 if "Sorry, the file type is invalid." in rsp.text:
                     return await xx.edit(get_string("stkr_6")
-                    )
+                                         )
                 await conv.send_message(emoji)
                 await args.client.send_read_acknowledge(conv.chat_id)
                 await conv.get_response()
@@ -281,7 +281,7 @@ async def kang(args):
                 await args.client.send_read_acknowledge(conv.chat_id)
 
         await eor(
-            args, 
+            args,
             get_string("stkr_7").format(packname),
             parse_mode="md",
         )
@@ -326,7 +326,7 @@ async def _(event):
     un_ = user.username or OWNER_ID
     if not reply:
         return await eod(xnxx, get_string("stkr_8")
-        )
+                         )
     pname = f"{un} Sticker Pack" if query == "" else query
     if reply.media and reply.media.document.mime_type == "image/webp":
         tikel_id = reply.media.document.attributes[1].stickerset.id
@@ -379,7 +379,7 @@ async def _(event):
             )
             addgvar("PKANG", str(pack))
         await xnxx.edit(get_string("stkr_9").format(create_st.set.short_name)
-        )
+                        )
     else:
         await xnxx.edit(get_string("stkr_12"))
 
@@ -417,7 +417,12 @@ async def get_pack_info(event):
         if document_sticker.emoticon not in pack_emojis:
             pack_emojis.append(document_sticker.emoticon)
 
-    OUTPUT = (get_string("stkr_16").format(get_stickerset.set.title, get_stickerset.set.short_name, get_stickerset.set.official, get_stickerset.set.archived, len(get_stickerset.packs), ' '.join(pack_emojis)))
+    OUTPUT = (get_string("stkr_16").format(get_stickerset.set.title,
+                                           get_stickerset.set.short_name,
+                                           get_stickerset.set.official,
+                                           get_stickerset.set.archived,
+                                           len(get_stickerset.packs),
+                                           ' '.join(pack_emojis)))
 
     await xx.edit(OUTPUT)
 
@@ -514,10 +519,10 @@ async def _(event):
                 "Please send us an emoji that best describes your sticker."
             ):
                 await xx.edit(get_string("edtstk_3")
-                )
+                              )
             else:
                 await xx.edit(get_string("edtstk_4").format(emot)
-                )
+                              )
 
 
 @ayiin_cmd(pattern="getsticker$")
@@ -566,7 +571,7 @@ async def _(event):
         return
     if not event.reply_to_msg_id:
         await eod(event, get_string("itos_1")
-        )
+                  )
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
@@ -587,7 +592,7 @@ async def _(event):
             response = await response
         if response.text.startswith("Hi!"):
             await xx.edit(get_string("itos_3")
-            )
+                          )
         else:
             await xx.delete()
             await event.client.send_read_acknowledge(conv.chat_id)
